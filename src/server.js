@@ -37,8 +37,20 @@ const logTypeOfResult = async (result) => {
 
 // https://mongoosejs.com/docs/models.html (look at constructing documents)
 // Add a single book to the db
-app.post("/books", (request, response) => {
+app.post("/books", async (request, response) => {
   // Add a single book to the db
+  //   const book = new Book({
+  //     title: "no time",
+  //     author: "jim",
+  //     genre: "fiction",
+  //   });
+  //   await book.save();
+  // });
+  await Book.create({
+    title: "lost",
+    author: "jim",
+    genre: "fiction",
+  });
 });
 
 // https://mongoosejs.com/docs/api/model.html#Model.find()
@@ -49,7 +61,7 @@ app.get("/books", (request, response) => {
 // https://mongoosejs.com/docs/api/model.html#Model.findOneAndUpdate()
 //              Or !!!!!!!!!!!!!!!!!!!!!
 // https://mongoosejs.com/docs/api/model.html#Model.updateOne()
-app.put("/books", (request, reponse) => {
+app.put("/books", async (request, reponse) => {
   // update a single book's author by title
 });
 
