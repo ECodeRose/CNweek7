@@ -54,8 +54,10 @@ app.post("/books", async (request, response) => {
 });
 
 // https://mongoosejs.com/docs/api/model.html#Model.find()
-app.get("/books", (request, response) => {
+app.get("/books", async (request, response) => {
   // get all books from the db
+  const books = await Book.find({});
+  response.send({ message: "all the books", books: books });
 });
 
 // https://mongoosejs.com/docs/api/model.html#Model.findOneAndUpdate()
