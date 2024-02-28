@@ -10,6 +10,13 @@ const addBook = async (request, response) => {
   response.status(201).json(newBook);
 };
 
+const getBooks = async (request, response) => {
+  // get all books from the db
+  const books = await Book.find({});
+  response.status(200).json({ message: "all the books", books: books });
+};
+
 module.exports = {
   addBook,
+  getBooks,
 };
