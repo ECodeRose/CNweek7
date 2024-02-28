@@ -2,21 +2,23 @@ const { Router } = require("express");
 
 const bookRouter = Router();
 
-const { addBook, getBooks } = require("./controllers");
+const {
+  addBook,
+  getBooks,
+  updateBook,
+  deleteBook,
+  deleteAllBooks,
+  getBookByTitle,
+} = require("./controllers");
 
 bookRouter.post("/", addBook);
 
-// https://mongoosejs.com/docs/api/model.html#Model.find()
 bookRouter.get("/", getBooks);
+bookRouter.get("/:title", getBookByTitle);
 
-// https://mongoosejs.com/docs/api/model.html#Model.findOneAndUpdate()
-//              Or !!!!!!!!!!!!!!!!!!!!!
-// https://mongoosejs.com/docs/api/model.html#Model.updateOne()
-bookRouter.put("/", async (request, reponse) => {
-  // update a single book's author by title
-});
+bookRouter.put("/:title", updateBook);
 
-// https://mongoosejs.com/docs/guide.html - you'll have to look at the docs and figure this one out!
-bookRouter.delete("/", (request, response) => {});
+bookRouter.delete("/:title", deleteBook);
+bookRouter.delete("/", deleteAllBooks);
 
 module.exports = bookRouter;
